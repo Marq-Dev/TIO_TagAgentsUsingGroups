@@ -47,7 +47,6 @@ if __name__ == "__main__":
                         if tag_uuid:
 
                             try:
-
                                 tio.tags.assign(assets=[asset_uuid], tags=[tag_uuid])
                             
                             except Exception as e:
