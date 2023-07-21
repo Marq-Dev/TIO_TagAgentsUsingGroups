@@ -23,7 +23,7 @@ def generate_dict(tio):
 
 if __name__ == "__main__":
 
-    tio = TenableIO(sys.argv[1], sys.argv[2])
+    tio = TenableIO(os.environ['TENABLEIO_ACCESS_KEY'], os.environ['TENABLEIO_SECRET_KEY'])
 
     logging.basicConfig(level=logging.DEBUG)
 
