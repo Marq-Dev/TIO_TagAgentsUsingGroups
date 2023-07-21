@@ -6,10 +6,13 @@ import os
 import re
 
 def generate_dict(tio):
+    
     tag_dict = {}
+    
     for tag in tio.tags.list():
         if pattern.match(tag["value"]):
             tag_dict[tag["value"]] = tag["uuid"]
+    
     return tag_dict
 
 if __name__ == "__main__":
