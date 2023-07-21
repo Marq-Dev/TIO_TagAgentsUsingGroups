@@ -35,6 +35,4 @@ if __name__ == "__main__":
                 asset_uuid = asset["id"]
                 tag_uuid = tag_dict.get(group_name)
                 if tag_uuid:
-                    print(asset_uuid)
-                    print(tag_uuid)
-                    #tio.tags.assign(assets=[asset_uuid], tags=[tag_uuid])
+                    tio.tags.assign(assets=[asset_uuid], tags=[tag_uuid])
