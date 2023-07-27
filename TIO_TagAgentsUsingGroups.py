@@ -2,14 +2,10 @@
 
 import re
 import os
-import sys
 import logging
 from tenable.io import TenableIO
 
 pattern = re.compile('REGEX_PLACEHOLDER')
-
-def get_tenable_instance(access_key, secret_key):
-    return TenableIO(access_key, secret_key)
 
 def configure_logging():
     logging.basicConfig(level=logging.DEBUG)
@@ -62,15 +58,19 @@ def assign_tag(tio, asset_dict, asset_uuid, tag_uuid, agent_name):
         logging.error(f'An error occurred while tagging agents: {e}')
 
 def write_to_file(asset_dict):
-    if asset_dict:
-        with open('tagging_results.txt', 'w') as f:
-            for name, uuid in asset_dict.items():
-                f.write(f"(Tagged) Hostname: {name}\n")
+    try:
+        if asset_dict:
+            with open('tagging_results.txt', 'w') as f:
+                for name, uuid in asset_dict.items():
+                    f.write(f"(Tagged) Hostname: {name}\n")
+    except Exception as e:
+        logging.error(f'An error occurred while writing to file: {e}')
 
 def main():
-    tio = get_tenable_instance(os.environ['TENABLEIO_ACCESS_KEY'], os.environ['TENABLEIO_SECRET_KEY'])
     
     configure_logging()
+
+    tio = TenableIO(os.environ['TENABLEIO_ACCESS_KEY'], os.environ['TENABLEIO_SECRET_KEY'])
 
     data_dict = generate_dict(tio)
 
