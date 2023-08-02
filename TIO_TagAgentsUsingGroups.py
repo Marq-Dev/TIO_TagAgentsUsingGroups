@@ -38,7 +38,7 @@ def process_assets(tio, data_dict):
                     uuid_formatted = '-'.join((uuid[:8],uuid[8:12],uuid[12:16],uuid[16:20],uuid[20:32]))
                     process_agents(tio, data_dict, asset, uuid_formatted)
                 else:
-                    data_dict["agents"][asset_name] = "error"
+                    data_dict['agents'][asset_name] = "error"
 
     except Exception as e:
         logging.error(f'An error occurred while processing assets: {e}')
