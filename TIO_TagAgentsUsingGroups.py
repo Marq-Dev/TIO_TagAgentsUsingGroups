@@ -25,7 +25,8 @@ def generate_dict(tio):
     except Exception as e:
         logging.error(f'An error occurred while fetching tags: {e}')
 
-    return data_dict
+    if data_dict['tags']:
+        return data_dict
 
 def process_assets(tio, data_dict):
     try:
